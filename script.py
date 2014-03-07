@@ -1,3 +1,6 @@
+# Place the script in your directory with all Python scripts and run it.
+# You should've already done the initial commit to do this!
+
 from subprocess import call
 
 # I added all of these bash-to-python methods just for the rest
