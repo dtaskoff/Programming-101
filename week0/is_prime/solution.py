@@ -3,7 +3,7 @@ def is_prime(n):
 	if n < 2:
 		return False
 
-	for i in range(2, n):
+	for i in range(2, n // 2 + 1):
 		if n % i == 0:
 			return False
 
@@ -12,7 +12,7 @@ def is_prime(n):
 #	if x < 2:
 #		return False
 #
-#	return all(map(lambda x: n % x != 0, range(2, n)))
+#	return all(map(lambda x: n % x != 0, range(2, n // 2 + 1)))
 
 def main():
 	print(is_prime(1))
