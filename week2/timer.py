@@ -1,4 +1,4 @@
-# a script that solve's problem #7
+# a script that solves problem #7
 # here we're keeping our time left
 _time = 0
 
