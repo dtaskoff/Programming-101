@@ -4,19 +4,19 @@ import sys
 from random import randint
 
 def generate_numbers(filename, n):
-	file = open(filename, "w")
-	for i in range(0, n):
-		file.write(str(randint(1, 1000)) + " ")
-	file.close()
+    file_ = open(filename, "w")
+    for i in range(0, n):
+        file_.write(str(randint(1, 1000)) + " ")
+    file_.close()
 
 def main():
-	args = sys.argv
-	if len(args) < 3:
-		print("no filename or number passed")
-	else:
-		filename = sys.argv[1]
-		n = int(sys.argv[2])
-		generate_numbers(filename, n)
+    args = sys.argv
+    if len(args) < 3:
+        print("no filename or number passed")
+    else:
+        filename = sys.argv[1]
+        n = int(sys.argv[2])
+        generate_numbers(filename, n)
 
 if __name__ == '__main__':
     main()

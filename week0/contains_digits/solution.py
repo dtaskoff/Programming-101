@@ -1,4 +1,8 @@
-from number_to_list import number_to_list
+def number_to_list(n):  
+    if n == 0:
+        return []
+    else:
+        return number_to_list(n // 10) + [n % 10]
 
 # returns True if 'number' contains all 'digits'
 def contains_digits(number, digits):
@@ -11,13 +15,3 @@ def contains_digits(number, digits):
 	return True
 #	short way:
 #	return all(map(lambda digit: digit in list_of_digits, digits))
-
-def main():
-	print(contains_digits(402123, [0, 3, 4]))
-	print(contains_digits(666, [6,4]))
-	print(contains_digits(123456789, [1,2,3,0]))
-	print(contains_digits(456, []))
-
-
-if __name__ == '__main__':
-	main()

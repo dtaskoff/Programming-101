@@ -1,7 +1,13 @@
 # a Python script that implements a part
 # of the bash command 'cat'
 import sys
-from cat import cat
+
+def cat(filename):
+    file_ = open(filename, "r")
+    content = file_.read()
+    file_.close()
+
+    return content
 
 def cat2(filenames):
 	text = map(cat, filenames)

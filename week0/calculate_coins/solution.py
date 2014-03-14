@@ -10,10 +10,3 @@ def calculate_coins(sum):
 		sum -= coins_dict[coin] * coin
 
 	return coins_dict
-
-def main():
-	print(calculate_coins(0.53))
-	print(calculate_coins(8.94))
-
-if __name__ == '__main__':
-	main()
