@@ -1,5 +1,5 @@
-# my script for testing all projects
-# in all child directories, starting from '.'
+# my script for running all tests in
+# subdirectories of '.'
 import glob
 from subprocess import call
 
