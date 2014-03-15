@@ -1,7 +1,6 @@
 import unittest
 from solution import is_decreasing
 
-
 class IsDecreasingTest(unittest.TestCase):
     def test_is_decreasing(self):
         self.assertTrue(is_decreasing([5,4,3,2,1]))
