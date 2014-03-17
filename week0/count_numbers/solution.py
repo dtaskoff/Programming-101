@@ -4,6 +4,8 @@ def count_numbers(numbers):
     for number in numbers:
         possible = [number // x for x in numbers if x < number]
         possible += [x // number for x in numbers if x > number]
-        list(map(lambda x: numbers.append(x) if x not in numbers else None, possible))
         
+        for x in possible:
+            if x not in numbers:
+                numbers.append(x)        
     return len(numbers)
