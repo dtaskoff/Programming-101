@@ -40,7 +40,9 @@ def main():
         elif command == 'add_employee':
             employee = create_employee()
             print(manage_company.add_employee(cursor, employee))
+            conn.commit()
         elif command == 'exit':
+            conn.close()
             exit(0)
         elif command == 'help':
             help()
@@ -48,8 +50,10 @@ def main():
             error()
         elif command == 'delete_employee':
             print(manage_company.delete_employee(cursor, commands[1]))
+            conn.commit()
         elif command == 'update_employee':
             print(manage_company.update_employee(cursor, commands[1]))
+            conn.commit()
         else:
             error()
 
