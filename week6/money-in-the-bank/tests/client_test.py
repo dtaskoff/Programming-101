@@ -8,7 +8,8 @@ from Client import Client
 class ClientTests(unittest.TestCase):
 
     def setUp(self):
-        self.test_client = Client(1, "Ivo", 200000.00, "Bitcoin mining makes me rich")
+        self.test_client = Client(1, "Ivo", "ivo@hackfmi.net", 200000.00,
+                "Bitcoin mining makes me rich")
 
     def test_client_id(self):
         self.assertEqual(self.test_client.get_id(), 1)
@@ -20,7 +21,12 @@ class ClientTests(unittest.TestCase):
         self.assertEqual(self.test_client.get_balance(), 200000.00)
 
     def test_client_message(self):
-        self.assertEqual(self.test_client.get_message(), "Bitcoin mining makes me rich")
+        self.assertEqual(self.test_client.get_message(),
+            "Bitcoin mining makes me rich")
+
+    def test_client_email(self):
+        self.assertEqual(self.test_client.get_email(),
+            "ivo@hackfmi.net")
 
 
 if __name__ == '__main__':

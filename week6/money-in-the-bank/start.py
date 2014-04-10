@@ -1,4 +1,5 @@
 import sql_manager
+from getpass import getpass
 
 
 def main_menu():
@@ -10,25 +11,42 @@ def main_menu():
         
         if command == 'register':
             username = input("Enter your username: ")
-            password = input("Enter your password: ")
+            email = input("Enter your email: ")
+            password = getpass("Enter your password: ")
 
-            while sql_manager.register(username, password) == False:
-                print(' '.join("Password should contain an upper and",
-                        "a lowercase letter, a digit and a symbol"))
-                password = input("Enter your password: ")
+            while sql_manager.register(username, email, password) == False:
+                print(' '.join(["Password should contain an upper and",
+                        "a lowercase letter, a digit and a symbol"]))
+                password = getpass("Enter your password: ")
             
             print("Registration Successfull")
-        
+
+        elif command == "send-reset-password":
+            username = input("Enter your username: ")
+            email = sql_manager.get_email(username)
+            sql_manager.send_reset_key(email)
+
+        elif command == 'reset-password':
+            username = input("Enter your username: ")
+            key = input("Enter key: ")
+            if not reset_password(username, key):
+                print("Wrong key entered!")
+            else:
+                print('\n'.join(["Password set to aaAA11**",
+                    "Please change your password now!"]))
+
         elif command == 'login':
             username = input("Enter your username: ")
-            password = input("Enter your password: ")
+            password = getpass("Enter your password: ")
 
             logged_user = sql_manager.login(username, password)
 
             if logged_user:
                 logged_menu(logged_user)
             else:
-                print("Login failed")
+                print('\n'.join(["Login failed",
+                    "Maybe you'd entered wrong password more than 5 times?",
+                    "If so, you've been blocked for 5 minutes.."]))
         
         elif command == 'help':
             print("login - for logging in!")
@@ -39,7 +57,6 @@ def main_menu():
             break
         else:
             print("Not a valid command")
-
 
 def logged_menu(logged_user):
     print("Welcome you are logged in as: " + logged_user.get_username())
@@ -52,11 +69,11 @@ def logged_menu(logged_user):
             print("Your balance is:" + str(logged_user.get_balance()) + '$')
 
         elif command == 'changepass':
-            new_pass = input("Enter your new password: ")
+            new_pass = getpass("Enter your new password: ")
             while sql_manager.change_pass(new_pass, logged_user) == False:
                 print(' '.join("Password should contain an upper and",
                         "a lowercase letter, a digit and a symbol"))
-                new_pass = input("Enter your new password: ")
+                new_pass = getpass("Enter your new password: ")
 
         elif command == 'change-message':
             new_message = input("Enter your new message: ")
