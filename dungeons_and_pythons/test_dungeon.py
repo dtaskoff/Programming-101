@@ -33,9 +33,15 @@ class TestDungeon(unittest.TestCase):
         self.assertTrue(result)
         self.assertEqual(".HP\n#.A\nI.G", self.d.map_.map_state())
 
-    def test_move_out_of_map(self):
+    def test_move_out_of_map_left(self):
         self.d.spawn()
         result = self.d.move('left')
+        self.assertFalse(result)
+        self.assertEqual("H.P\n#.A\nI.G", self.d.map_.map_state())
+
+    def test_move_out_of_map_up(self):
+        self.d.spawn()
+        result = self.d.move('up')
         self.assertFalse(result)
         self.assertEqual("H.P\n#.A\nI.G", self.d.map_.map_state())
 
@@ -43,6 +49,11 @@ class TestDungeon(unittest.TestCase):
         self.d.spawn()
         result = self.d.move('down')
         self.assertFalse(result)
+        self.assertEqual("H.P\n#.A\nI.G", self.d.map_.map_state())
+
+    def test_invalid_move(self):
+        self.d.spawn()
+        self.d.move('own')
         self.assertEqual("H.P\n#.A\nI.G", self.d.map_.map_state())
 
     def test_get_item(self):
@@ -81,6 +92,13 @@ class TestDungeon(unittest.TestCase):
         result = self.d.get_potion()
         self.assertTrue(isinstance(result, potion.Potion))
 
+    def test_next_level(self):
+        self.d.spawn()
+        self.d.move('right')
+        self.d.move('down')
+        self.d.move('down')
+        with self.assertRaises(SystemExit):
+            self.d.move('right')
 
 if __name__ == '__main__':
     unittest.main()

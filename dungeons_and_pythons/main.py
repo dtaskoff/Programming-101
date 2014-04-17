@@ -13,7 +13,7 @@ def main():
         difficulty = 0
         print("you chose an invalid difficulty! demo mode started")
     game = gameplay.Gameplay(difficulty)
-    game.list_heroes()
+    print(game.list_heroes())
 
     hero_name = input("choose a hero: ")
 

@@ -85,13 +85,16 @@ class Fight():
         if 'weapon' in self.hero.__dict__:
             self.hero.weapon.damage +=\
                 int(self.hero.weapon.damage * _weapon_damage_bonus)
-            print("your weapon damage is now %d"%self.hero.weapon.damage)
+            print("your weapon damage is now %d"
+                % self.hero.weapon.damage)
 
             self.hero.weapon.critical_strike_percent +=\
-                self.hero.weapon.critical_strike_percent * _weapon_critical_hit_chance_bonus
+                self.hero.weapon.critical_strike_percent *\
+                    _weapon_critical_hit_chance_bonus
             if self.hero.weapon.critical_strike_percent > 1.0:
                 self.hero.weapon.critical_strike_percent = 1.0
-            print("your critical strike chance is now %d%%"%(self.hero.weapon.critical_strike_percent * 100))
+            print("your critical strike chance is now %d%%"
+                % (self.hero.weapon.critical_strike_percent * 100))
 
     # the whole thing is happening here:
     # (we get the winner as a result from the method,

@@ -53,6 +53,22 @@ class TestGameplay(unittest.TestCase):
         self.g.dungeon.hero.take_damage(1000)
         self.assertFalse(self.g.in_game())
 
+    def test_move(self):
+        self.g.add_hero("sharik")
+        self.assertTrue(self.g.move('right'))
+
+    # will fail sometimes, becuse of dictionary's random iterations
+    def test_list_heroes(self):
+        result = self.g.list_heroes()
+        expected = ["\nheroes:", "-" * 40,
+                str(gameplay._heroes_by_name["sharik"]),
+                "-" * 40, "-" * 40,
+                str(gameplay._heroes_by_name["arya"]),
+                "-" * 40, "-" * 40,
+                str(gameplay._heroes_by_name["silmarillion"]), "-" * 40]
+        self.assertEqual('\n'.join(expected), result)
+
+
 
 if __name__ == '__main__':
     unittest.main()

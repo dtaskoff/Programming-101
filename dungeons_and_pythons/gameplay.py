@@ -34,11 +34,12 @@ class Gameplay():
 
     # returns all posible heroes to pick
     def list_heroes(self):
-        print("\nheroes:")
+        heroes = ["\nheroes:"]
         for hero in _heroes_by_name:
-            print("-" * 40)
-            print(_heroes_by_name[hero])
-            print("-" * 40)
+            heroes.append("-" * 40)
+            heroes.append(str(_heroes_by_name[hero]))
+            heroes.append("-" * 40)
+        return '\n'.join(heroes)
 
     # returns a string forming our hero's current vision
     # i.e. the fields that she can see from her own one
