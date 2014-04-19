@@ -13,36 +13,42 @@ def get_repos_url(user):
 
     return repos_url
 
-def fetch_repos(user):
-    repos_url = get_repos_url(user)
+def fetch_repos(repos_url):
     r = request(repos_url)
     repos = r.json()
     list_of_repos = [repo["name"] for repo in repos]
 
     return list_of_repos
 
-def extract(request, repo):
+def save_to_disk(request, repo):
     file_ = open("{}.zip".format(repo), "wb")
     for chunk in request.iter_content():
         file_.write(chunk)
     file_.close()
 
-def download_repos(user):
-    repos = fetch_repos(user)
+def download_repos(repos_names, user):
     url = "https://github.com/%s/{}/archive/master.zip" % (user)
 
-    for repo in repos:
+    for repo in repos_names:
         r = request(url.format(repo))
-        extract(r, repo)
+        save_to_disk(r, repo)
 
-def lines_of_code(repo):
-    pass
+def unzip_repos(repos_names):
+    for repo in repos_names:
+        with zipfile.ZipFile("{}.zip".format(repo)) as myzip:
+            myzip.extractall()
 
-def get_stat_for_repo(zip_file):
+def get_repos_stats(repos_names):
     pass
 
 def main():
-    download_repos("dtaskoff")
+    # user = "dtaskoff"
+    # repos_url = get_repos_url("user")
+    # repos_names = fetch_repos(repos_url)
+    # download_repos(repos_names, "user")
+    # unzip_repos(repos_names)
+    # get_repos_stats(repos_names)
+    pass
 
 
 if __name__ == '__main__':
