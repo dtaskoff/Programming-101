@@ -77,12 +77,6 @@ def lines_of_code_in_repo(repo):
     lines = 0
     list_files = os.walk(repo)
 
-    for dirs in list_files:
-        dir = dirs[0]
-        files = dirs[2]
-        for file in files:
-            lines += get_lines(dir + '/' + file)
-
     return "{} lines".format(lines)
 
 def all_repos_stats(repos_names):
