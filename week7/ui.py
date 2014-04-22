@@ -2,7 +2,7 @@ def welcome():
     text = ["Welcome to the \"Do you even math?\" game!"
         "Here are your options:",
         "- start",
-        "- highscore",
+        "- highscores ",
         "- exit"]
 
     print('\n'.join(text))

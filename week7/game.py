@@ -16,7 +16,7 @@ class MathGame():
             commands = ui.get_input()
             self._parse(commands)
 
-    def correct_guess(self):
+    def _correct_guess(self):
         guess = ui.get_input()
         result = self.generator.get_value()
 
@@ -35,7 +35,7 @@ class MathGame():
         expression = str(self.generator)
         ui.question(expression, self.question)
 
-        return self.correct_guess()
+        return self._correct_guess()
 
     def start(self):
         self.question = 1
@@ -43,7 +43,7 @@ class MathGame():
         ui.welcome_player(self.player)
         while self.play(): pass
 
-    def highscore(self):
+    def highscores(self):
         self.scoreboard.display()
 
     def exit(self):
